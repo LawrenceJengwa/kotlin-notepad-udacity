@@ -23,7 +23,9 @@ class NoteDatabase(context: Context?) {
                     null,
                     null,
                     CREATED_AT)
-            return cursor.use(this::allFromCursor)
+        val retval = allFromCursor(cursor)
+        cursor.close()
+        return retval
         }
 
     fun loadAllByIds(vararg ids: Int): List<Note> {
